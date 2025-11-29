@@ -70,20 +70,37 @@
 </style>
     </style>
 <body>
+
+<!-- 頂部 Header：左邊按鈕 + 右邊標題 -->
+<div style="display:flex; align-items:center; justify-content:space-between; padding:15px;">
+    <button class="openbtn" onclick="openNav()" 
+        style="background-color:#fbd9a6; border:none; padding:10px 15px; font-size:16px;">
+        ≡ 開啟選單
+    </button>
+
+    <h1 style="margin:0; font-size:24px;">Faith Spark</h1>
+</div>
+
+<!-- Sidebar 改成你需要的功能 -->
 <div id="mySidebar" class="sidebar">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+
+    <!-- 你想要的 4 個功能 -->
+    <a href="#">番茄鬧鐘</a>
+    <a href="#">To-Do List</a>
+    <a href="#">每日經文</a>
+    <a href="#">激勵金句</a>
+    <a href="#">Notes</a>
 </div>
 
-<div id="main">
-  <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>  
-  <h2>Collapsed Sidebar</h2>
-  <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p>
+<!-- 主內容區（等陣會放全部功能） -->
+<div id="main" style="padding:20px;">
+    <h2>歡迎來到 Faith Spark</h2>
+    <p>請從左方選單選擇功能。</p>
 </div>
 
+
+<!-- Sidebar 開關 Script -->
 <script>
 function openNav() {
   document.getElementById("mySidebar").style.width = "250px";
@@ -92,11 +109,9 @@ function openNav() {
 
 function closeNav() {
   document.getElementById("mySidebar").style.width = "0";
-  document.getElementById("main").style.marginLeft= "0";
+  document.getElementById("main").style.marginLeft = "0";
 }
 </script>
-<h1>gghghghghhg</h1>
-<p>abcdefg</p>
+
 </body>
-    
 </html>
