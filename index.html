@@ -71,21 +71,173 @@
     </style>
 <body>
 
-<!-- 頂部 Header：左邊按鈕 + 右邊標題 -->
-<div style="display:flex; align-items:center; justify-content:space-between; padding:15px;">
-    <button class="openbtn" onclick="openNav()" 
-        style="background-color:#fbd9a6; border:none; padding:10px 15px; font-size:16px;">
-        ≡ 開啟選單
-    </button>
 
-    <h1 style="margin:0; font-size:48px;flex:1;text-align:center;color:#F08080">Daily_Light:)</h1>
-</div>
 
-<!-- Sidebar 改成你需要的功能 -->
+<!-- =====================  STYLE  ===================== -->
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #fdfdfd;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 18px;
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    position: sticky;
+    top:0;
+    z-index: 1000;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Sidebar */
+.sidebar {
+    height: 100%;
+    width: 260px;
+    position: fixed;
+    top: 0;
+    left: -260px;
+    background: #1d1d1d;
+    padding-top: 60px;
+    transition: 0.4s;
+    z-index: 2000;
+}
+
+.sidebar a {
+    padding: 15px 25px;
+    display: block;
+    color: #ffffff;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background: #333333;
+}
+
+.closebtn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 35px;
+    color: white;
+}
+
+/* Main content */
+#main {
+    padding: 20px;
+    transition: margin-left 0.4s;
+}
+
+/* Cards */
+.card {
+    background: #e8f4ff;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+}
+
+/* Today's verse */
+.verseBox {
+    background: #fffbe7;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+}
+
+/* Fullscreen Modal */
+.modalFull {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:white;
+    padding:20px;
+}
+
+.closeModal {
+    background:#ff7043;
+    color:white;
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+}
+
+/* iPad control buttons */
+#touchControls {
+    position: fixed;
+    bottom: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.controlBtn {
+    width: 90px;
+    height: 90px;
+    font-size: 28px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.85);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.controlBtn:active {
+    transform: scale(0.9);
+    background: rgba(255,235,150,0.95);
+}
+
+/* Basket */
+#basket {
+    width: 100px;
+    height: 40px;
+    background: #76baff;
+    position: absolute;
+    bottom: 120px;
+    left: 50%;
+    margin-left: -50px;
+    border-radius: 10px;
+}
+
+/* Falling blessings */
+.blessing {
+    position: absolute;
+    font-size: 32px;
+}
+
+/* Verse Builder puzzle pieces */
+.piece {
+    padding:10px 15px;
+    background:#fff3d1;
+    margin:6px;
+    border-radius:8px;
+    display:inline-block;
+    cursor:grab;
+    font-size:20px;
+}
+
+</style>
+
+<!-- =====================  SIDEBAR  ===================== -->
 <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 
-    <!-- 你想要的 4 個功能 -->
     <a href="#">番茄鬧鐘</a>
     <a href="#">To-Do List</a>
     <a href="#">每日經文</a>
@@ -93,25 +245,246 @@
     <a href="#">Notes</a>
 </div>
 
-<!-- 主內容區（等陣會放全部功能） -->
-<div id="main" style="padding:20px;">
-    <h2>歡迎來到 Faith Spark</h2>
-    <p>請從左方選單選擇功能。</p>
+
+<!-- =====================  HEADER  ===================== -->
+<div class="header">
+    <span style="font-size:26px; cursor:pointer;" onclick="openNav()">☰</span>
+    <h1>Daily_Light</h1>
 </div>
 
 
-<!-- Sidebar 開關 Script -->
+<!-- =====================  MAIN CONTENT  ===================== -->
+<div id="main">
+
+    <!-- 今日亮光 -->
+    <div class="verseBox">
+        <h2>🌤 今日亮光</h2>
+        <p id="dailyVerse" style="font-size:20px; font-weight:500;"></p>
+    </div>
+
+    <!-- Game 1: Catch the Blessing -->
+    <div class="card">
+        <h3>🎮 Catch the Blessing</h3>
+        <button onclick="miniBlessing()">玩一下（迷你）</button>
+        <button onclick="openBlessingModal()">▶ 放大玩</button>
+        <p id="miniBlessingResult"></p>
+    </div>
+
+    <!-- Game 2: Verse Builder -->
+    <div class="card">
+        <h3>🎮 Verse Builder</h3>
+        <button onclick="miniVerse()">玩一下（迷你）</button>
+        <button onclick="openVerseModal()">▶ 放大玩</button>
+        <p id="miniVerseResult"></p>
+    </div>
+
+    <!-- Notes -->
+    <div class="card">
+        <h3>📝 Notes</h3>
+        <textarea id="notesArea" style="width:100%; height:150px;"></textarea>
+    </div>
+
+</div>
+
+
+
+<!-- =====================  MODAL — Catch the Blessing  ===================== -->
+<div id="blessingModal" class="modalFull">
+
+    <h2>Catch the Blessing</h2>
+    <p>分數：<span id="score">0</span></p>
+    <div id="basket"></div>
+
+    <button onclick="closeBlessingModal()" class="closeModal">關閉</button>
+
+    <!-- iPad 左右按鈕 -->
+    <div id="touchControls">
+        <button id="leftBtn" class="controlBtn">⬅</button>
+        <button id="rightBtn" class="controlBtn">➡</button>
+    </div>
+</div>
+
+
+<!-- =====================  MODAL — Verse Builder  ===================== -->
+<div id="verseModal" class="modalFull">
+    <h2>Verse Builder</h2>
+
+    <div id="puzzleArea"></div>
+    <p id="puzzleResult"></p>
+
+    <button onclick="closeVerseModal()" class="closeModal">關閉</button>
+</div>
+
+
+
+
+<!-- =====================  SCRIPT（全部功能）  ===================== -->
 <script>
+
+/* ---------- Sidebar ---------- */
 function openNav() {
-  document.getElementById("mySidebar").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "250px";
+    document.getElementById("mySidebar").style.left = "0";
+}
+function closeNav() {
+    document.getElementById("mySidebar").style.left = "-260px";
 }
 
-function closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
-  document.getElementById("main").style.marginLeft = "0";
+/* ---------- 今日亮光 ---------- */
+const verses = [
+    "耶和華是我的亮光，是我的拯救。（詩篇27:1）",
+    "你要專心仰賴耶和華。（箴言3:5）",
+    "神是我們的避難所，是我們的力量。（詩篇46:1）",
+    "耶和華是我的牧者，我必不致缺乏。（詩篇23:1）"
+];
+document.getElementById("dailyVerse").innerText =
+    verses[Math.floor(Math.random() * verses.length)];
+
+
+/* ---------- Notes ---------- */
+const notes = document.getElementById("notesArea");
+notes.value = localStorage.getItem("savedNotes") || "";
+notes.addEventListener("input", () => {
+    localStorage.setItem("savedNotes", notes.value);
+});
+
+
+/* ---------- Game 1: Mini Blessing ---------- */
+function miniBlessing(){
+    const arr = ["✨","🕊️","🌈","🔆"];
+    document.getElementById("miniBlessingResult").innerText =
+        "你接到：" + arr[Math.floor(Math.random()*arr.length)];
 }
+
+/* ---------- Game 1: Fullscreen Blessing ---------- */
+let score = 0;
+let playing = false;
+
+function openBlessingModal(){
+    document.getElementById("blessingModal").style.display = "block";
+    score = 0;
+    document.getElementById("score").innerText = score;
+    playing = true;
+    startBlessing();
+}
+
+function closeBlessingModal(){
+    playing = false;
+    document.getElementById("blessingModal").style.display = "none";
+}
+
+let basket = document.getElementById("basket");
+
+function moveBasket(offset){
+    let left = parseInt(window.getComputedStyle(basket).left);
+    basket.style.left = (left + offset) + "px";
+}
+
+document.getElementById("leftBtn").onclick = () => moveBasket(-20);
+document.getElementById("rightBtn").onclick = () => moveBasket(20);
+
+function startBlessing(){
+    const items = ["✨","🕊️","🌈","🔆"];
+
+    function dropOne(){
+        if(!playing) return;
+
+        let emoji = document.createElement("div");
+        emoji.classList.add("blessing");
+        emoji.innerText = items[Math.floor(Math.random()*items.length)];
+        emoji.style.left = Math.random()*300 + "px";
+        emoji.style.top = "0px";
+
+        document.body.appendChild(emoji);
+
+        let fall = setInterval(()=>{
+            if(!playing){
+                clearInterval(fall);
+                emoji.remove();
+                return;
+            }
+
+            let top = parseInt(emoji.style.top);
+            emoji.style.top = (top + 5) + "px";
+
+            let basketRect = basket.getBoundingClientRect();
+            let emojiRect = emoji.getBoundingClientRect();
+
+            if(emojiRect.bottom >= basketRect.top &&
+               emojiRect.left >= basketRect.left &&
+               emojiRect.right <= basketRect.right){
+                score++;
+                document.getElementById("score").innerText = score;
+                clearInterval(fall);
+                emoji.remove();
+            }
+
+            if(top > 700){
+                emoji.remove();
+                clearInterval(fall);
+            }
+        },20);
+
+        setTimeout(dropOne, 800);
+    }
+
+    dropOne();
+}
+
+
+/* ---------- Game 2: Mini Version ---------- */
+function miniVerse(){
+    document.getElementById("miniVerseResult").innerText =
+        "你完成咗迷你金句拼圖！✨";
+}
+
+/* ---------- Game 2: Fullscreen Verse Builder ---------- */
+function openVerseModal(){
+    document.getElementById("verseModal").style.display = "block";
+
+    const verse = "神是我們的避難所";
+    const pieces = verse.split("").sort(()=>Math.random() - 0.5);
+
+    let area = document.getElementById("puzzleArea");
+    area.innerHTML = "";
+
+    pieces.forEach(char=>{
+        let div = document.createElement("div");
+        div.classList.add("piece");
+        div.draggable = true;
+        div.innerText = char;
+
+        div.addEventListener("dragstart", e =>{
+            e.dataTransfer.setData("text", char);
+        });
+
+        area.appendChild(div);
+    });
+
+    area.addEventListener("dragover", e => e.preventDefault());
+    area.addEventListener("drop", e => {
+        let text = e.dataTransfer.getData("text");
+        let found = [...area.children].find(x=>x.innerText==text);
+        area.appendChild(found);
+        checkPuzzle();
+    });
+}
+
+function closeVerseModal(){
+    document.getElementById("verseModal").style.display = "none";
+}
+
+function checkPuzzle(){
+    const correct = "神是我們的避難所".split("");
+    let now = [...document.querySelectorAll(".piece")].map(x=>x.innerText);
+
+    if(now.join("") === correct.join("")){
+        document.getElementById("puzzleResult").innerText =
+            "✨ 拼圖成功！耶和華永遠與你同在 ✨";
+    }
+}
+
 </script>
+
 
 </body>
 </html>
