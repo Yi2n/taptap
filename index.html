@@ -71,7 +71,7 @@
     </style>
 <body>
 
-<!-- =====================  STYLE（CSS） ===================== -->
+<!-- =====================  STYLE（CSS 升級） ===================== -->
 <style>
 body {
     font-family: Arial, sans-serif;
@@ -88,10 +88,9 @@ body {
     background: #ffffff;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     position: sticky;
-    top:0;
+    top: 0;
     z-index: 1000;
 }
-
 .header h1 {
     margin: 0;
     font-size: 22px;
@@ -110,7 +109,6 @@ body {
     transition: 0.4s;
     z-index: 2000;
 }
-
 .sidebar a {
     padding: 15px 25px;
     display: block;
@@ -118,11 +116,9 @@ body {
     font-size: 20px;
     text-decoration: none;
 }
-
 .sidebar a:hover {
     background: #333333;
 }
-
 .closebtn {
     position: absolute;
     top: 15px;
@@ -136,22 +132,13 @@ body {
     padding: 20px;
 }
 
-/* Today's verse */
+/* 今日亮光 */
 .verseBox {
     background: #fffbe7;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 0 10px rgba(0,0,0,0.08);
-    margin-bottom: 20px;
-}
-
-/* Cards */
-.card {
-    background: #e8f4ff;
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    margin-bottom: 25px;
 }
 
 /* Notes */
@@ -159,69 +146,115 @@ textarea {
     width: 100%;
     height: 150px;
     border-radius: 10px;
+    padding: 10px;
 }
 
-/* Modal */
+/* 🔥 Game Cards Layout */
+.gameRow {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+/* 左右卡片 */
+.gameCard {
+    flex: 1;
+    min-width: 260px;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+/* 卡片顏色 */
+.cardGreen { background: #d9f7d6; }
+.cardPink  { background: #fde2e4; }
+
+/* 遊戲標題 */
+.gameCard h3 {
+    margin-top: 0;
+    font-size: 22px;
+}
+
+/* ▶ 按鈕在右下角 */
+.playBtn {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    background: #91c9ff;
+    color: black;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+.playBtn:active {
+    transform: scale(0.94);
+}
+
+/* ========= MODALS ========= */
 .modalFull {
     display: none;
     position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:white;
-    z-index:3000;
-    padding:20px;
-    overflow:hidden;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 3000;
+    padding: 20px;
+    overflow: hidden;
 }
 
-/* Close button */
+/* Close Button */
 .closeModal {
-    background:#ff7043;
-    color:white;
-    padding:10px 20px;
-    border:none;
-    border-radius:10px;
-    font-size:18px;
+    background: #ffb38a;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
 }
 
-/* Catch the Blessing — game area */
+/* Catch Blessing 遊戲區 */
 #blessingGameArea {
     position: relative;
     width: 100%;
     height: 70%;
-    background: #fff7d1; /* 粉黃柔光背景 */
+    background: #fff7d1; /* 粉黃 柔光背景 */
     border-radius: 12px;
     overflow: hidden;
 }
 
-/* Basket */
+/* 籃子 */
 #basket {
     width: 100px;
     height: 40px;
     background: #76baff;
     position: absolute;
-    bottom: 10px;
+    bottom: 12px;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 10px;
 }
 
-/* Falling blessings */
+/* 掉落的 Blessing */
 .blessing {
     position: absolute;
     font-size: 32px;
 }
 
-/* iPad control buttons */
+/* iPad 控制 */
 #touchControls {
     position: absolute;
-    bottom: 20px;
+    bottom: 25px;
     width: 100%;
     display: flex;
     justify-content: space-around;
 }
-
 .controlBtn {
     width: 80px;
     height: 80px;
@@ -231,35 +264,48 @@ textarea {
     background: rgba(255,255,255,0.85);
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
-
 .controlBtn:active {
     transform: scale(0.9);
     background: rgba(255,235,150,0.95);
 }
 
-/* Verse Builder puzzle area */
+/* Puzzle Area */
 #puzzleArea {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
-
 .piece {
-    padding:10px 15px;
-    background:#fff3d1;
-    border-radius:8px;
-    display:inline-block;
-    cursor:pointer;
-    font-size:20px;
+    padding: 10px 15px;
+    background: #fff3d1;
+    border-radius: 8px;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 20px;
     user-select: none;
+}
+
+/* Pastel Buttons for Verse Builder */
+.hintBtn {
+    background: #ffe6a7;
+    padding: 10px 18px;
+    border-radius: 12px;
+    border: none;
+    font-size: 18px;
+}
+.nextBtn {
+    background: #c8f7c5;
+    padding: 10px 18px;
+    border-radius: 12px;
+    border: none;
+    font-size: 18px;
 }
 
 </style>
 
 <!-- ===================== SIDEBAR ===================== -->
 <div id="mySidebar" class="sidebar">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-
+    <a class="closebtn" onclick="closeNav()">×</a>
     <a href="#">番茄鬧鐘</a>
     <a href="#">To-Do List</a>
     <a href="#">每日經文</a>
@@ -269,11 +315,11 @@ textarea {
 
 <!-- ===================== HEADER ===================== -->
 <div class="header">
-    <span style="font-size:26px; cursor:pointer;" onclick="openNav()">☰</span>
+    <span style="font-size:26px;cursor:pointer;" onclick="openNav()">☰</span>
     <h1>Daily_Light</h1>
 </div>
 
-<!-- ===================== MAIN CONTENT ===================== -->
+<!-- ===================== MAIN ===================== -->
 <div id="main">
 
     <!-- 今日亮光 -->
@@ -282,38 +328,41 @@ textarea {
         <p id="dailyVerse" style="font-size:20px;"></p>
     </div>
 
-    <!-- Game 1 -->
-    <div class="card">
-        <h3>🎮 Catch the Blessing</h3>
-        <button onclick="miniBlessing()">玩一下（迷你）</button>
-        <button onclick="openBlessingModal()">▶ 放大玩</button>
-        <p id="miniBlessingResult"></p>
-    </div>
+    <!-- 🔥 左右並排遊戲卡片 -->
+    <div class="gameRow">
 
-    <!-- Game 2 -->
-    <div class="card">
-        <h3>🎮 Verse Builder</h3>
-        <button onclick="miniVerse()">玩一下（迷你）</button>
-        <button onclick="openVerseModal()">▶ 放大玩</button>
-        <p id="miniVerseResult"></p>
+        <!-- Catch Blessing -->
+        <div class="gameCard cardGreen">
+            <h3>🎮 Catch the Blessing</h3>
+            <p>接住祝福 · 升級 5 Levels！</p>
+            <button class="playBtn" onclick="openBlessingModal()">▶ 放大玩</button>
+        </div>
+
+        <!-- Verse Builder -->
+        <div class="gameCard cardPink">
+            <h3>🎮 Verse Builder</h3>
+            <p>砌經文 · 挑戰 4 Levels！</p>
+            <button class="playBtn" onclick="openVerseModal()">▶ 放大玩</button>
+        </div>
+
     </div>
 
     <!-- Notes -->
-    <div class="card">
+    <div style="margin-top:25px;">
         <h3>📝 Notes</h3>
         <textarea id="notesArea"></textarea>
     </div>
 
 </div>
 
-<!-- ===================== MODAL — CATCH ===================== -->
+<!-- ===================== MODAL：CATCH ===================== -->
 <div id="blessingModal" class="modalFull">
     <h2>Catch the Blessing</h2>
-
     <p>Level：<span id="blessingLevel">1</span> ／ 分數：<span id="blessingScore">0</span></p>
 
     <div id="blessingGameArea">
         <div id="basket"></div>
+
         <div id="touchControls">
             <button id="leftBtn" class="controlBtn">⬅</button>
             <button id="rightBtn" class="controlBtn">➡</button>
@@ -322,29 +371,28 @@ textarea {
 
     <p id="blessingMessage"></p>
 
-    <button onclick="closeBlessingModal()" class="closeModal">關閉</button>
+    <button onclick="closeBlessingModal()" class="closeModal">Close 關閉</button>
 </div>
 
-<!-- ===================== MODAL — VERSE BUILDER ===================== -->
+<!-- ===================== MODAL：VERSE ===================== -->
 <div id="verseModal" class="modalFull">
     <h2>Verse Builder</h2>
     <p>Level：<span id="verseLevel">1</span></p>
 
-    <div id="puzzleArea"></div>
+    <button class="hintBtn" onclick="showHint()">Hint 提示</button>
+
+    <div id="puzzleArea" style="margin-top:20px;"></div>
+
     <p id="puzzleMessage"></p>
 
-    <button onclick="closeVerseModal()" class="closeModal">關閉</button>
+    <button onclick="closeVerseModal()" class="closeModal">Close 關閉</button>
 </div>
 
-    <script>
-
+<!-- ❗ 第 2 部分 JS 稍後會貼在這裡 -->
+<script>
 /* ================== SIDEBAR ================== */
-function openNav() {
-    document.getElementById("mySidebar").style.left = "0";
-}
-function closeNav() {
-    document.getElementById("mySidebar").style.left = "-260px";
-}
+function openNav() { document.getElementById("mySidebar").style.left = "0"; }
+function closeNav() { document.getElementById("mySidebar").style.left = "-260px"; }
 
 /* ================== 今日亮光 ================== */
 const todayVerses = [
@@ -364,31 +412,30 @@ notes.addEventListener("input", () => {
     localStorage.setItem("savedNotes", notes.value);
 });
 
-/* ============================================================
-   🎮 MINI — Catch the Blessing
-============================================================ */
-function miniBlessing(){
-    const arr = ["✨","🕊️","🌈","🔆"];
-    document.getElementById("miniBlessingResult").innerText =
-        "你接到：" + arr[Math.floor(Math.random()*arr.length)];
-}
+/* ================================================================
+   🎶 音效（Base64 版本）
+================================================================ */
+const sndCatch = new Audio("data:audio/mp3;base64,//uQx...");
+const sndMiss  = new Audio("data:audio/mp3;base64,//uQx...");
+const sndLevel = new Audio("data:audio/mp3;base64,//uQx...");
+const sndWin   = new Audio("data:audio/mp3;base64,//uQx...");
 
-/* ============================================================
-   🎮 Catch the Blessing — 5 LEVEL 完整版
-============================================================ */
+/* ================================================================
+   🎮 Catch the Blessing（5 LEVEL）
+================================================================ */
 let blessingLevel = 1;
 let blessingScore = 0;
 let blessingMiss = 0;
 let blessingPlaying = false;
 
-const blessingTargets = [0, 5, 8, 10, 12, 15];  // 每關需要接幾多
-const blessingSpeeds  = [0, 2, 3, 4, 5, 6];      // 每關掉落速度（數字愈大愈快）
-const blessingIntervals = [0, 1200, 900, 700, 550, 400]; // 掉落頻率
-const blessingAllowedMiss = [0, 999, 3, 3, 2, 1]; // 容許掉漏
+const blessingTargets = [0, 5, 8, 10, 12, 15];
+const blessingBaseSpeeds = [0, 2, 3, 4, 5, 6];
+const blessingIntervals = [0, 1300, 1000, 850, 650, 500];
+const allowedMiss = [0, 99, 3, 3, 2, 1];
 
-const blessingEmojis = ["✨", "🕊️", "🌈", "🔆"];
+const blessings = ["✨", "🕊️", "🌈", "🔆"];
 
-function openBlessingModal(){
+function openBlessingModal() {
     document.getElementById("blessingModal").style.display = "block";
 
     blessingLevel = 1;
@@ -403,73 +450,86 @@ function openBlessingModal(){
     startBlessingLevel();
 }
 
-function closeBlessingModal(){
+function closeBlessingModal() {
     blessingPlaying = false;
     document.getElementById("blessingModal").style.display = "none";
 }
 
-/* ------------------ iPad 左右按鈕控制籃子 ------------------ */
+/* 取得籃子 */
 const basket = document.getElementById("basket");
-document.getElementById("leftBtn").onclick = () => moveBasket(-25);
-document.getElementById("rightBtn").onclick = () => moveBasket(25);
 
-function moveBasket(offset){
+/* ------------------ 🎮 Keyboard 控制 ------------------ */
+document.addEventListener("keydown", e => {
+    if (!blessingPlaying) return;
+    if (e.key === "ArrowLeft") moveBasket(-45);
+    if (e.key === "ArrowRight") moveBasket(45);
+});
+
+/* ------------------ 📱 手機 Touch 控制 ------------------ */
+document.getElementById("leftBtn").addEventListener("touchstart", () => moveBasket(-45));
+document.getElementById("rightBtn").addEventListener("touchstart", () => moveBasket(45));
+
+/* 範圍移動籃子 */
+function moveBasket(offset) {
     let left = parseInt(window.getComputedStyle(basket).left);
     basket.style.left = (left + offset) + "px";
 }
 
-/* ------------------ 開始某一關 ------------------ */
-function startBlessingLevel(){
+/* ------------------ 🔥 開始某 LEVEL ------------------ */
+function startBlessingLevel() {
+    const area = document.getElementById("blessingGameArea");
 
-    let interval = blessingIntervals[blessingLevel];
-    let speed = blessingSpeeds[blessingLevel];
+    let fallSpeed = blessingBaseSpeeds[blessingLevel];
+    let screenScale = window.innerHeight / 800;  
+    fallSpeed = Math.max(1.2, fallSpeed * screenScale * 0.8);
 
-    function dropOne(){
-        if(!blessingPlaying) return;
+    function dropOne() {
+        if (!blessingPlaying) return;
 
-        let area = document.getElementById("blessingGameArea");
         let emoji = document.createElement("div");
         emoji.classList.add("blessing");
-        emoji.innerText = blessingEmojis[Math.floor(Math.random()*blessingEmojis.length)];
+        emoji.innerText = blessings[Math.floor(Math.random() * blessings.length)];
         emoji.style.left = Math.random() * (area.offsetWidth - 40) + "px";
         emoji.style.top = "0px";
-
         area.appendChild(emoji);
 
-        let fall = setInterval(()=>{
-            if(!blessingPlaying){
-                clearInterval(fall);
+        let fallTimer = setInterval(() => {
+            if (!blessingPlaying) {
+                clearInterval(fallTimer);
                 emoji.remove();
                 return;
             }
 
             let top = parseInt(emoji.style.top);
-            emoji.style.top = (top + speed) + "px";
+            emoji.style.top = (top + fallSpeed) + "px";
 
             let basketRect = basket.getBoundingClientRect();
             let emojiRect = emoji.getBoundingClientRect();
 
-            if(
+            if (
                 emojiRect.bottom >= basketRect.top &&
                 emojiRect.left >= basketRect.left &&
                 emojiRect.right <= basketRect.right
-            ){
+            ) {
+                sndCatch.play();
                 blessingScore++;
                 document.getElementById("blessingScore").innerText = blessingScore;
-                clearInterval(fall);
-                emoji.remove();
 
-                if(blessingScore >= blessingTargets[blessingLevel]){
+                emoji.remove();
+                clearInterval(fallTimer);
+
+                if (blessingScore >= blessingTargets[blessingLevel]) {
                     levelUpBlessing();
                 }
             }
 
-            if(top > area.offsetHeight){
+            if (top > area.offsetHeight) {
+                sndMiss.play();
                 blessingMiss++;
-                clearInterval(fall);
                 emoji.remove();
+                clearInterval(fallTimer);
 
-                if(blessingMiss > blessingAllowedMiss[blessingLevel]){
+                if (blessingMiss > allowedMiss[blessingLevel]) {
                     blessingFail();
                 }
             }
@@ -477,117 +537,137 @@ function startBlessingLevel(){
         }, 20);
     }
 
-    function spawnLoop(){
-        if(!blessingPlaying) return;
+    function loop() {
+        if (!blessingPlaying) return;
         dropOne();
-        setTimeout(spawnLoop, interval);
+        setTimeout(loop, blessingIntervals[blessingLevel]);
     }
 
-    spawnLoop();
+    loop();
 }
 
-/* ------------------ 成功升級 ------------------ */
-function levelUpBlessing(){
-    blessingLevel++;
+/* ------------------ LEVEL UP ------------------ */
+function levelUpBlessing() {
+    sndLevel.play();
 
-    if(blessingLevel > 5){
+    blessingLevel++;
+    if (blessingLevel > 5) {
+        sndWin.play();
         document.getElementById("blessingMessage").innerText =
-            "🎉 你完成晒全部 LEVEL！神的恩典與祝福滿滿臨到你！✨";
+            "🎉 恭喜你完成全部等級！神的祝福滿滿臨到你！";
         blessingPlaying = false;
         return;
     }
 
-    document.getElementById("blessingLevel").innerText = blessingLevel;
-    document.getElementById("blessingMessage").innerText =
-        "👏 Level Up！進入 Level " + blessingLevel;
-
     blessingScore = 0;
     blessingMiss = 0;
 
-    setTimeout(()=>{
+    document.getElementById("blessingLevel").innerText = blessingLevel;
+    document.getElementById("blessingMessage").innerText = "👏 Level Up！";
+
+    setTimeout(() => {
         document.getElementById("blessingMessage").innerText = "";
         startBlessingLevel();
     }, 1200);
 }
 
-/* ------------------ 掉漏太多 → Game Over ------------------ */
-function blessingFail(){
+/* ------------------ Game Over ------------------ */
+function blessingFail() {
     blessingPlaying = false;
     document.getElementById("blessingMessage").innerText =
-        "😢 你掉漏咗太多祝福，但唔緊要，神仍然愛你！💛";
+        "😢 你漏接太多祝福，但神仍然愛你！💛";
 }
 
-/* ============================================================
-   🎮 MINI — Verse Builder
-============================================================ */
-function miniVerse(){
-    document.getElementById("miniVerseResult").innerText =
-        "你完成咗迷你金句拼圖！✨";
-}
-
-/* ============================================================
-   🎮 Verse Builder — 4 LEVEL（Swap Mode）
-============================================================ */
+/* ================================================================
+   🎮 Verse Builder（4 LEVEL + Hint + Swap）
+================================================================ */
 let verseLevel = 1;
 let selectedPiece = null;
+let currentFullVerse = "";
 
-const verseSets = {
-    1: ["要喜樂", "神愛你", "不要怕", "常常禱告"],
+/* 大量經文池 */
+const versePool = {
+    1: [
+        "神愛你", "要喜樂", "不要怕", "常常禱告",
+        "凡事謝恩", "主是良善", "神看顧你", "勇敢前行"
+    ],
     2: [
         "神是我們的避難所",
-        "凡事謝恩靠主喜樂",
-        "你不要懼怕因為神與你同在"
+        "你不要懼怕因為神與你同在",
+        "願主賜你平安",
+        "靠主剛強",
+        "神必保守你的心懷意念",
+        "主必引導你",
+        "凡事倚靠祂",
+        "主與你同行",
+        "神聽你的禱告",
+        "願主的喜樂充滿你"
     ],
     3: [
         "你要專心倚靠耶和華不可倚靠自己的聰明",
-        "神必親自與你同在祂必不撇下你也不丟棄你"
+        "神必親自與你同在祂必不撇下你也不丟棄你",
+        "你們要彼此相愛正如我愛你們",
+        "當將你的事交託耶和華並倚靠祂祂就必成全",
+        "你們要先求祂的國和祂的義",
+        "神必賜力量給疲乏的",
+        "你們的心不要憂愁也不要膽怯",
+        "靠主喜樂是你們的力量",
+        "你們要時刻儆醒禱告",
+        "神的慈愛永不止息"
     ],
     4: [
-        "神的話是我腳前的燈路上的光引導我每日的腳步",
-        "你們要彼此相愛正如我愛你們這樣的心你們也要彼此相愛"
+        "神的話是我腳前的燈路上的光指引我每日腳步",
+        "你們要彼此相愛正如我愛你們這樣你們也要彼此相愛",
+        "耶和華賜力量給祂的百姓耶和華賜平安的福給祂的百姓",
+        "你們要靠主常常喜樂我再說你們要喜樂",
+        "在指望中要喜樂在患難中要忍耐在禱告上要恒切",
+        "主必按祂榮耀的豐富供應你們一切所需用的",
+        "神賜平安的神必親自使你們全然成聖",
+        "祂醫治傷心的人裹好他們的傷處",
+        "神的應許沒有一句不帶能力的",
+        "主是我的力量是我的詩歌也是我的拯救"
     ]
 };
 
-function openVerseModal(){
+/* 開啟 Modal */
+function openVerseModal() {
     document.getElementById("verseModal").style.display = "block";
-
     verseLevel = 1;
     document.getElementById("verseLevel").innerText = verseLevel;
     loadVerseLevel();
 }
 
-function closeVerseModal(){
+/* 關閉 Modal */
+function closeVerseModal() {
     document.getElementById("verseModal").style.display = "none";
 }
 
-/* ------------------ 讀取某一 LEVEL 的金句 ------------------ */
-function loadVerseLevel(){
-    let verses = verseSets[verseLevel];
-    let chosen = verses[Math.floor(Math.random()*verses.length)];
+/* 載入關卡 */
+function loadVerseLevel() {
+    let verses = versePool[verseLevel];
+    currentFullVerse = verses[Math.floor(Math.random() * verses.length)];
 
-    let chars = chosen.split("");
-    let shuffled = chars.slice().sort(()=>Math.random()-0.5);
+    let chars = currentFullVerse.split("");
+    let shuffled = chars.slice().sort(() => Math.random() - 0.5);
 
     let area = document.getElementById("puzzleArea");
     area.innerHTML = "";
 
-    shuffled.forEach((c, i)=>{
+    shuffled.forEach(c => {
         let div = document.createElement("div");
         div.classList.add("piece");
         div.innerText = c;
-
-        div.onclick = ()=> swapPiece(div);
-
+        div.onclick = () => swapPiece(div);
         area.appendChild(div);
     });
 
-    selectedPiece = null;
     document.getElementById("puzzleMessage").innerText = "";
+    selectedPiece = null;
 }
 
-/* ------------------ Swap 交換兩個位置 ------------------ */
-function swapPiece(piece){
-    if(!selectedPiece){
+/* 交換邊兩粒 */
+function swapPiece(piece) {
+    if (!selectedPiece) {
         selectedPiece = piece;
         piece.style.background = "#ffe4a8";
         return;
@@ -603,40 +683,43 @@ function swapPiece(piece){
     checkPuzzle();
 }
 
-/* ------------------ 檢查是否完成某 LEVEL ------------------ */
-function checkPuzzle(){
-    let pieces = [...document.querySelectorAll(".piece")].map(x=>x.innerText);
-    let correct = verseSets[verseLevel]
-        .find(v => pieces.length === v.length)
-        ?.split("");
+/* 判斷是否完成 */
+function checkPuzzle() {
+    let pieces = [...document.querySelectorAll(".piece")].map(x => x.innerText);
 
-    if(!correct) return;
-
-    if(pieces.join("") === correct.join("")){
+    if (pieces.join("") === currentFullVerse) {
         verseLevelUp();
     }
 }
 
-/* ------------------ 升級 Verse Level ------------------ */
-function verseLevelUp(){
-    if(verseLevel >= 4){
+/* 升關 */
+function verseLevelUp() {
+    document.getElementById("puzzleMessage").innerText =
+        "🎉 完成！Next Level 下一關！";
+
+    if (verseLevel >= 4) {
         document.getElementById("puzzleMessage").innerText =
-            "🎉 你完成晒全部拼圖！神的話語成為你腳前的燈 ✨";
+            "🌟 你完成全部經文拼圖！好勁！✨";
         return;
     }
 
     verseLevel++;
     document.getElementById("verseLevel").innerText = verseLevel;
-    document.getElementById("puzzleMessage").innerText =
-        "👏 Level Up！進入 Level " + verseLevel;
 
-    setTimeout(()=>{
+    setTimeout(() => {
         loadVerseLevel();
-    }, 1000);
+    }, 1200);
+}
+
+/* Hint：淡色顯示完整句子 */
+function showHint() {
+    const hint = "提示 Hint：" + currentFullVerse;
+    const msg = document.getElementById("puzzleMessage");
+    msg.style.color = "#b5b5b5";
+    msg.innerText = hint;
 }
 
 </script>
-
 
 </body>
 </html>
